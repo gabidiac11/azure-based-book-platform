@@ -1,0 +1,15 @@
+.add-book-view .submit-btn {
+  margin: 20px 8px;
+}
+.add-book-view .heading {
+  margin: 20px 8px 20px 0;
+}
+
+.add-book-view .form-control {
+  margin-bottom: 15px;
+  margin-right: 45px;
+}
+
+.add-book-view .form-wrapper {
+  min-height: 200px;
+}

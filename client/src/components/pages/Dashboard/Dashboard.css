@@ -1,0 +1,8 @@
+.dashboard div[data-field="title"]:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.dashboard-link {
+  margin: 20px 0;
+}

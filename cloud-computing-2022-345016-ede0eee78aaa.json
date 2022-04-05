@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "cloud-computing-2022-345016",
+  "private_key_id": "ede0eee78aaa78826e000a8621321ca2c9139857",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC74QrO33YQnrVD\nMEs7OGT98N7FDCMr0ZzEC8VIjUuEBdC6MVJVvdL/RBb3HEJKlRT6uQyBqP3Do7Wl\nK+BsOsngGYgOTn8kPvlW5dgyz3GGzDE4VR9OGntiBuupyFcZAebFUdKpmBpVc0An\n+oHtn3zenloh0/MhfIgNppi/++uatxt4V4PTaZZFOnFtyYZb1F7D/RGIzBBB9D6u\ndyyLWoQOt2qqzXrduKb9KDWAkomRbdh72Y2vy6ef/eILKZk4//LSu6WSRdgktiQ9\n8jrPwjh8kl7BgE65QLFlJ1RV8cg29AD8mpoAMAZ+LT9a5kEF1x5aWgOEYPa2tXxs\nVgCdhA03AgMBAAECggEAEibajRHCVDXxNbrOjSJhGrb3eIdreOO5YKhYEpVlv8cM\nDoeOkkgfwMsXgoWeOTR3U9RZfmF3lKJJfdn9k2Qh3JJUg2u9ru1pC6ZzOx19tQdS\nlHdTUFyqO3Ag7qtmqgmoyrs7PjVuCrMMdl0mlnDiEJdK0zMPrdZceSBcAhhymX5/\nxADA4vgF3Q1YMnyPsvj0jZ3xUR2dFBSBD773nhAAsMFnYNIBYRvk5+yGI2DJjAUP\nj1lZ7XxhPbc4+tYHdlBEO87yWCk3Vkl1Ea8ld4DKO7sAy2VasU/sBGiHRFJ9jTXZ\nEwDUp23jfxhrg9NljLu56ECWDOBgsUp+0LIh1gwpCQKBgQDnuvWLCU4CPcHgyAb+\nVg0T2oGnHe8GuG1Y7ccEOA8boP26r16r9JQYnLFnu62IRxtezaDclOfnqKOpr1+Z\nOcmVQ39EbqZi1+cu8Kit8sNZgxAaTnn8WMaesBNjSf0Q2rQj3vEg8qBuGWFvhsGP\noNz4Nm1DTbOxMf0QfY4TyDkzvQKBgQDPjl1qa2HF4JvHPnoYlOjYWz4VtFIseUhU\nPXTfB/iZcMlDmi5grvvuPuWtxq9CYjl9aGrKZaZnLy9RtNFB5LeFFvqqQg1/uAwj\n0vFlljT8d9ZsVJDwe6dkDIYfko1Kimvn2iusjSWUnj5gUY4nW7k3JXtOSwlj87Yt\nbVDBAchaAwKBgDwDqoYIseBYuDaL92u1Q4vJwlxSn04BQ6iNZEaOcjM4nZ3Uv1MP\nc69wHW39KDMsH0WNQcT+95SCk2hl1/9p/PAgW/yQH51nxyLcBwON5NPw4qG9g1A8\neawtc8f6KIVN7ut/WLmsvKnm/toQb17QTYonJmMQ46HXjW/Q5JPw/geNAoGAOi/6\nRmxmU7g9U+VTC3MruAQUardL1kYGHf/AtQoiCrpQ4k/mMpq77DXb5BTwa1boMR1F\n2woWVZUn2essQyHgxUIE8hhkemrZlG192XH71s+t4F7w50pzShwsucs3Ky+VQsGq\nPsyvPXQDnrMefDA9w5URdYiZ0FixuRiNbB6Y0YsCgYEAwVHWURkfLBGa9jn0f5Pk\nW63Wm6hJb2aap+VZxEry7KKRFGrs45t5PE5k/CLHsKxS2OgDIoPK/QBMsoanQG/A\nsHGUJ4ccDLk7Z+axT0BzLz1tgWrx8eyJTxz+Tuq1vXDDKDIHrS3B1R/k19vK9MOI\nkCthIfuXsx2HKxkPPK/gQcc=\n-----END PRIVATE KEY-----\n",
+  "client_email": "cc-2022-text-to-speech@cloud-computing-2022-345016.iam.gserviceaccount.com",
+  "client_id": "105678563947815054107",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/cc-2022-text-to-speech%40cloud-computing-2022-345016.iam.gserviceaccount.com"
+}
