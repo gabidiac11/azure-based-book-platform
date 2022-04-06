@@ -2,10 +2,13 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const express = require("express");
 const app = express();
-const models = require("./server/models");
 const multer = require("multer");
 const upload = multer();
 const fs = require("fs");
+
+const injector = require("./server/depencyInjection");
+const bookController = injector.get("BookController");
+const audioController = injector.get("AudioController");
 
 app.use(express.static(path.join(__dirname, "../build")));
 
@@ -23,20 +26,11 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.get("/api/books/:id", (req, res, next) =>
-  models.bookModule.getById(Number(req.params.id), req, res, next)
-);
-app.get("/api/books", models.bookModule.get);
-app.post("/api/books", upload.single("imgFile"), models.bookModule.addBook);
-app.post("/api/play", models.playModule.postPlayAudio);
-app.get("/api/audio/:fileName", function (req, res) {
-  const pathName = path.join(__dirname, "server/audio", req.params.fileName);
-  if (!fs.existsSync(pathName)) {
-    return res.status(404).send();
-  }
-  res.sendFile(pathName);
-});
-app.get("/api", models.testModule.index);
+app.get("/api/books/:id", bookController.getBook);
+app.get("/api/books", bookController.getAllBooks);
+app.post("/api/books", upload.single("imgFile"), bookController.createBook);
+
+app.post("/api/play", audioController.create);
 
 app.get("/*", function (req, res) {
   const pathName = path.join(__dirname, "client/build", "index.html");
@@ -51,4 +45,3 @@ const port = process.env.SERVER_STAGE === "local" ? 5001 : 8080;
 app.listen(port, () => console.log(`Listening on port ${port}!`));
 
 module.exports = app;
-
