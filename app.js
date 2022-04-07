@@ -41,7 +41,7 @@ app.get("/*", function (req, res) {
   res.sendFile(pathName);
 });
 
-const port = process.env.SERVER_STAGE === "local" ? 5001 : 8080;
+const port = process.env.SERVER_STAGE === "local" ? 5001 : process.env.PORT;
 app.listen(port, () => console.log(`Listening on port ${port}!`));
 
 module.exports = app;
