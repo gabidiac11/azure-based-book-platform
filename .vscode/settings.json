@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/3b4cd68b-496b-4730-95c6-ee9ea20cb291/resourceGroups/cc-2022-tema-app-service/providers/Microsoft.Web/sites/cc-2022-tem",
+    "appService.deploySubpath": "."
+}
