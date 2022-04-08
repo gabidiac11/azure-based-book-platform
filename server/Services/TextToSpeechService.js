@@ -79,8 +79,6 @@ class TextToSpeechService {
       );
     });
 
-    console.log({ arrayBuffer });
-
     //upload to storage
     const url = await this.storageService.uploadFile(
       {
