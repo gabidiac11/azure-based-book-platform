@@ -1,9 +1,22 @@
-import React, { useCallback, useLayoutEffect, useState, useRef, useEffect } from "react";
+import React, {
+  useCallback,
+  useLayoutEffect,
+  useState,
+  useRef,
+  useEffect,
+} from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
 import Header from "../../common/Header/Header";
 import "./Dashboard.css";
-import { Alert, FormControl, InputLabel, MenuItem, Select, Stack } from "@mui/material";
+import {
+  Alert,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Stack,
+} from "@mui/material";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
@@ -14,6 +27,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../auth/firebase";
 import { useAppContext } from "../../../context/hooks/useAppContext";
 import { useContextActions } from "../../../context/hooks/useContextActions";
+import Moment from "react-moment";
 
 export const Dashboard = () => {
   const [rows, setRows] = useState([]);
@@ -38,11 +52,10 @@ export const Dashboard = () => {
     const fetchAndUpdateRows = async () => {
       setIsLoading(true);
       try {
-
         const bodyFormData = new URLSearchParams();
-        bodyFormData.append("language", language.current)
+        bodyFormData.append("language", language.current);
 
-        const resp = await axios.get("books", {params : bodyFormData});
+        const resp = await axios.get("books", { params: bodyFormData });
 
         setRows(resp.data);
       } catch (err) {
@@ -99,7 +112,14 @@ export const Dashboard = () => {
     { field: "bookId", headerName: "ID", width: 70 },
     { field: "title", headerName: "Title", width: 360 },
     { field: "author", headerName: "Author", width: 350 },
-    { field: "publishedDate", headerName: "Published date", width: 160 },
+    {
+      field: "publishedDate",
+      headerName: "Published date",
+      width: 160,
+      renderCell: (params) => (
+        <Moment format="MMM Do YYYY" date={new Date(params.value)} />
+      ),
+    },
     {
       field: "button",
       headerName: "Play Audio Description",
@@ -122,18 +142,17 @@ export const Dashboard = () => {
     },
   ];
 
-  const handleDropdownChange = async event => {
+  const handleDropdownChange = async (event) => {
     const fetchAndUpdateRows = async () => {
       setIsLoading(true);
-      language.current = event.target.value
+      language.current = event.target.value;
       updateLanguage(language.current);
 
       try {
-
         let bodyFormData = new URLSearchParams();
-        bodyFormData.append("language", language.current)
+        bodyFormData.append("language", language.current);
 
-        const resp = await axios.get("books", {params : bodyFormData});
+        const resp = await axios.get("books", { params: bodyFormData });
         setRows(resp.data);
       } catch (err) {
         setError(err?.message || "Ups! Something went wrong.");
@@ -142,18 +161,17 @@ export const Dashboard = () => {
       }
     };
 
-
     fetchAndUpdateRows();
-  }
+  };
 
   useEffect(() => {
-      return () => {
-        //stop audio on exit
-        if (audio.current) {
-            audio.current.pause();
-            audio.current = null;
-        }
+    return () => {
+      //stop audio on exit
+      if (audio.current) {
+        audio.current.pause();
+        audio.current = null;
       }
+    };
   }, []);
 
   return (
@@ -165,7 +183,7 @@ export const Dashboard = () => {
         </div>
 
         <div>
-          <FormControl style={{padding: "10px 0"}}>
+          <FormControl style={{ padding: "10px 0" }}>
             <InputLabel id="language-simple-select-label">Language</InputLabel>
             <Select
               labelId="language-simple-select-label"

@@ -7,6 +7,7 @@ import { useParams } from "react-router";
 import { CalendarMonth } from "@mui/icons-material";
 import { Box } from "@mui/system";
 import { useAppContext } from "../../../context/hooks/useAppContext";
+import Moment from "react-moment"
 
 export const BookPage = () => {
   const [book, setBook] = useState();
@@ -19,11 +20,10 @@ export const BookPage = () => {
     const fetchAndUpdateBook = async () => {
       setIsLoading(true);
       try {
-
         const bodyFormData = new URLSearchParams();
-        bodyFormData.append("language", language)
+        bodyFormData.append("language", language);
 
-        const resp = await axios.get(`books/${id}`, {params : bodyFormData});
+        const resp = await axios.get(`books/${id}`, { params: bodyFormData });
         setBook(resp.data);
       } catch (err) {
         setError(err?.message || "Ups! Something went wrong.");
@@ -57,7 +57,9 @@ export const BookPage = () => {
                 <span className="icon-wrapper">
                   <CalendarMonth />{" "}
                 </span>{" "}
-                <span>{book.publishedDate}</span>
+                <span>
+                  <Moment format="MMM Do YYYY" date={new Date(book.publishedDate)} />
+                </span>
               </Typography>
               <Typography variant="body1" gutterBottom>
                 {book.description}
