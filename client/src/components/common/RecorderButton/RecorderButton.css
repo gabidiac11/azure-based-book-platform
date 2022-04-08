@@ -1,0 +1,23 @@
+.recorder-section {
+    display: flex;
+    align-items: center;
+}
+.recorder-section .record-btn {
+    min-width: 50px;
+}
+.recorder-section .record-btn.is-recording {
+    background-color: rgba(0, 0, 0, 0.04);
+}
+
+.recorder-section .record-btn.loading:hover {
+    background-color: transparent!important;
+}
+
+.recorder-section audio {
+  height: 35px;
+}
+
+.recorder-section .loading-btn {
+   width: 25px!important;
+   height: 25px!important;
+}
