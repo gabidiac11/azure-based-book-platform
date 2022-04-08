@@ -18,10 +18,7 @@ class BookRepository {
       };
     }
 
-    return {
-      ...rows[0],
-      publishedDate: rows[0].publishedDate.value,
-    };
+    return rows[0];
   }
 
   async getAll() {
