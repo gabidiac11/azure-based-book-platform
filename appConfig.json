@@ -1,5 +1,4 @@
 {
-  "GC_KEY_FILENAME": "cloud-computing-2022-345016-ede0eee78aaa.json",
   "AZURE_DB_CONFIG": {
     "host": "cc-2022-simple-db-server-name.mysql.database.azure.com",
     "user": "cesamai",
@@ -16,5 +15,10 @@
   "AZURE_SPEECH_CONFIG": {
     "key": "a8fe3007000945f2b2b3990705a4e4b6",
     "region": "westeurope"
+  },
+  "AZURE_TRANSLATE_CONFIG": {
+    "key": "eedd1065a8f644d3b5fe99b2f1c9f7c0",
+    "region": "westeurope",
+    "endpointText": "https://api.cognitive.microsofttranslator.com"
   }
 }
