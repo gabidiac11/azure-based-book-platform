@@ -22,7 +22,6 @@ import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import PlayingIcon from "@mui/icons-material/PlayCircleFilled";
 import StopIcon from "@mui/icons-material/StopCircleRounded";
-import { BASE_URL } from "./../../../constants";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../auth/firebase";
 import { useAppContext } from "../../../context/hooks/useAppContext";
@@ -195,6 +194,7 @@ export const Dashboard = () => {
               <MenuItem value={"en"}>English</MenuItem>
               <MenuItem value={"de"}>Deutch</MenuItem>
               <MenuItem value={"zh"}>Chineza</MenuItem>
+              <MenuItem value={"ru"}>Русский</MenuItem>
             </Select>
           </FormControl>
         </div>

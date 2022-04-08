@@ -1,7 +1,5 @@
 {
   "GC_KEY_FILENAME": "cloud-computing-2022-345016-ede0eee78aaa.json",
-  "FILE_STORAGE_BASE_URL": "https://storage.googleapis.com/cloud-computing-2022-345016.appspot.com/",
-  "BUCKET_NAME": "cloud-computing-2022-345016.appspot.com",
   "AZURE_DB_CONFIG": {
     "host": "cc-2022-simple-db-server-name.mysql.database.azure.com",
     "user": "cesamai",
@@ -14,5 +12,9 @@
     "AZURE_STORAGE_CONN_STRING": "DefaultEndpointsProtocol=https;AccountName=cc2022storage1account;AccountKey=iULU4+7lzV1TkWBZBxQgCHRYZ2kYx3bM4Qdibk5B7URZeFEYZOunCpXwx1t4zTWKIB3NwUD/lw9vRFgnHhK0Kg==;EndpointSuffix=core.windows.net",
     "AZURE_BLOB_CONTAINER": "images-container",
     "AZURE_ACCOUNT": "cc2022storage1account"
+  },
+  "AZURE_SPEECH_CONFIG": {
+    "key": "a8fe3007000945f2b2b3990705a4e4b6",
+    "region": "westeurope"
   }
 }
