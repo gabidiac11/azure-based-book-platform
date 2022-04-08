@@ -41,7 +41,7 @@ class BookService {
     async create(req) {
         const bookReq = this.extractBookFromReq(req);
 
-        console.log("file is.....", req.file)
+        console.log("file is.....", req.file, typeof req.file)
         /**
          * file is..... {
             fieldname: 'imgFile',

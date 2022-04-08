@@ -1,30 +1,33 @@
-const { Storage } = require('@google-cloud/storage');
-const uuid = require('uuid');
+const { BlobServiceClient, ContainerClient } = require("@azure/storage-blob");
+const uuid = require("uuid");
 
 class StorageService {
-    static inject = ["Configuration"];
-    constructor(config) {
-        this.storage = new Storage({ keyFilename: config.get("GC_KEY_FILENAME") });
-        this.baseUrl = config.get("FILE_STORAGE_BASE_URL");
-        this.bucketName = config.get("BUCKET_NAME");
+  static inject = ["Configuration"];
+  constructor(config) {
+    //set config details
+    const storageConfig = config.get("AZURE_STORAGE");
+    this.accountName = storageConfig.AZURE_ACCOUNT;
+    this.containerName = storageConfig.AZURE_BLOB_CONTAINER;
 
-        this.upload = this.upload.bind(this);
-        this.uploadFile = this.uploadFile.bind(this);
-    }
+    //set blob client
+    /** @type {ContainerClient} */
+    this.storage = BlobServiceClient.fromConnectionString(
+      storageConfig.AZURE_STORAGE_CONN_STRING
+    ).getContainerClient(this.containerName);
 
-    async upload(file) {
-        const fileName = uuid.v4() + '.jpg';
-        await this.storage.bucket(this.bucketName).file(fileName).save(file.buffer);
-        await this.storage.bucket(this.bucketName).file(fileName).makePublic();
-        return `${this.baseUrl}${fileName}`;
-    }
+    this.upload = this.upload.bind(this);
+    this.uploadFile = this.uploadFile.bind(this);
+  }
 
-    async uploadFile(file, name) {
-        const fileName = name;
-        await this.storage.bucket(this.bucketName).file(fileName).save(file.buffer);
-        await this.storage.bucket(this.bucketName).file(fileName).makePublic();
-        return `${this.baseUrl}${fileName}`;
-    }
+  async upload(file) {
+    const fileName = uuid.v4() + ".jpg";
+    return await this.uploadFile(file, fileName);
+  }
+
+  async uploadFile(file, fileName) {
+    await this.storage.getBlockBlobClient(fileName).uploadData(file.buffer);
+    return `https://${this.accountName}.blob.core.windows.net/${this.containerName}/${fileName}`;
+  }
 }
 
 module.exports = StorageService;

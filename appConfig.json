@@ -9,5 +9,10 @@
     "database": "cc_2022_database",
     "port": 3306,
     "ssl": { "ca": "DigiCertGlobalRootCA.crt.pem" }
+  },
+  "AZURE_STORAGE": {
+    "AZURE_STORAGE_CONN_STRING": "DefaultEndpointsProtocol=https;AccountName=cc2022storage1account;AccountKey=iULU4+7lzV1TkWBZBxQgCHRYZ2kYx3bM4Qdibk5B7URZeFEYZOunCpXwx1t4zTWKIB3NwUD/lw9vRFgnHhK0Kg==;EndpointSuffix=core.windows.net",
+    "AZURE_BLOB_CONTAINER": "images-container",
+    "AZURE_ACCOUNT": "cc2022storage1account"
   }
 }
