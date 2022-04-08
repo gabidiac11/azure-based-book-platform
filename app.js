@@ -7,6 +7,10 @@ const upload = multer();
 const fs = require("fs");
 
 const injector = require("./server/depencyInjection");
+const seedService = injector.get("SeedService");
+
+seedService.seed();
+
 const bookController = injector.get("BookController");
 const audioController = injector.get("AudioController");
 

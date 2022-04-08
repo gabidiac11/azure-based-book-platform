@@ -5,6 +5,7 @@ injector.factory("Configuration", require("./Services/Configuration"));
 
 injector.factory("Database", require("./Database/Database"));
 injector.factory("BookRepository", require("./Repositories/BookRepository"));
+injector.factory("SeedService", require("./Database/seed/SeedService"));
 
 injector.factory("BookController", require("./Controllers/BookController"));
 injector.factory("AudioController", require("./Controllers/AudioController"));

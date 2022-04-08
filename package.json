@@ -17,10 +17,11 @@
     "start:demo": "npm --prefix ./client/ ci && npm --prefix ./client/ run build && rimraf client/node_modules && node app.js",
     "start:local": "set SERVER_STAGE=local&nodemon app.js",
     "test": "mocha --exit test/*.test.js",
-    "prepare-deploy": "npm install -g npm && npm ci && npm --prefix ./client/ ci && npm --prefix ./client/ run build && rimraf client/node_modules"
+    "prepare-deploy": "npm install -g npm && npm ci && npm run prepare-client",
+    "prepare-client": "npm --prefix ./client/ ci && npm --prefix ./client/ run build && rimraf client/node_modules",
+    "prepare-client-local": "npm --prefix ./client/ ci && npm --prefix ./client/ run build:local && rimraf client/node_modules"
   },
   "dependencies": {
-    "@google-cloud/bigquery": "^5.12.0",
     "@google-cloud/storage": "^5.18.2",
     "@google-cloud/text-to-speech": "^3.4.0",
     "@google-cloud/translate": "^6.3.1",
@@ -28,6 +29,7 @@
     "express": "^4.17.1",
     "mongoose": "^6.2.10",
     "multer": "^1.4.4",
+    "mysql": "^2.18.1",
     "nodemon": "^2.0.15",
     "rimraf": "^3.0.2",
     "shelljs": "^0.8.5",
