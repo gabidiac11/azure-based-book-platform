@@ -62,12 +62,15 @@ export default function Header() {
     }
     
     if(textLc.indexOf("go back") > -1) {
+      let numOfTimes = textLc.split("back").length - 1;
+      numOfTimes = numOfTimes < 1 ? 1 : numOfTimes;
+
       setSnack({
-        message: `Command: GO-BACK (recognised text: '${text}')`,
+        message: `Command: GO-BACK x${numOfTimes} (recognised text: '${text}')`,
         open: true,
         severity: "success",
       });
-      navigate(-1);
+      navigate(-numOfTimes);
       return;
     }
 

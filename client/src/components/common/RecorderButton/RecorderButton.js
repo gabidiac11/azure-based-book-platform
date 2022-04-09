@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import { Mic, MicOff } from "@mui/icons-material";
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, Tooltip } from "@mui/material";
 import AudioReactRecorder, { RecordState } from "./recorder-js/dist";
 import "./RecorderButton.css";
 
@@ -45,11 +45,13 @@ export default function RecorderButton(props) {
       return alert("No web audio support in this browser!");
     }
 
-    if(isBlocked.current === undefined) {
+    if (isBlocked.current === undefined) {
       isBlocked.current = await isRecordingBlocked();
     }
-    if(isBlocked.current) {
-      return alert("Your sound permission is blocked. Please allow that in your browser site settings and restart.");
+    if (isBlocked.current) {
+      return alert(
+        "Your sound permission is blocked. Please allow that in your browser site settings and restart."
+      );
     }
 
     if (isRecording) {
@@ -103,7 +105,26 @@ export default function RecorderButton(props) {
               <CircularProgress color="secondary" className="loading-btn" />
             );
           }
-          return isRecording ? <Mic htmlColor="red" /> : <MicOff />;
+          return isRecording ? (
+            <Mic htmlColor="red" />
+          ) : (
+            <Tooltip
+              leaveDelay={1000}
+              title={
+                <ul className="tooltip-list">
+                  <span> Vocal commands: </span>
+                  <li>go back</li>
+                  <li>go forward</li>
+                  <li>go to dashboard</li>
+                  <li>open book $number </li>
+                  <li>add book </li>
+                </ul>
+              }
+              placement="bottom"
+            >
+              <MicOff />
+            </Tooltip>
+          );
         })()}
       </IconButton>
       <audio src={blobURL} controls="controls" />

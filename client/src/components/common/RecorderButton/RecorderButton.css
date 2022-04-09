@@ -25,3 +25,9 @@
 .audio-react-recorder {
     display: none;
 }
+
+.tooltip-list {
+    margin: 0;
+    padding: 10px;
+    list-style: inside;
+}
