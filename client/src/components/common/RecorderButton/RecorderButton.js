@@ -114,6 +114,8 @@ export default function RecorderButton(props) {
                 <ul className="tooltip-list">
                   <span> Vocal commands: </span>
                   <li>go back</li>
+                  <li>go back back</li>
+                  <li>go back back etc.</li>
                   <li>go forward</li>
                   <li>go to dashboard</li>
                   <li>open book $number </li>
