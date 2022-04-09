@@ -18,6 +18,19 @@ const initAudioAndGetSupport = () => {
   }
 };
 
+const isRecordingBlocked = () =>
+  new Promise((resolve) => {
+    navigator.getUserMedia(
+      { audio: true },
+      () => {
+        resolve(false);
+      },
+      () => {
+        resolve(true);
+      }
+    );
+  });
+
 export default function RecorderButton(props) {
   const [isRecording, setIsRecording] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -25,10 +38,18 @@ export default function RecorderButton(props) {
   const [blobURL, setBlobURL] = useState("");
   const [recordState, setRecordState] = useState();
   const hasSupport = useRef(initAudioAndGetSupport());
+  const isBlocked = useRef(undefined);
 
   const onClickMic = async () => {
     if (!hasSupport.current) {
       return alert("No web audio support in this browser!");
+    }
+
+    if(isBlocked.current === undefined) {
+      isBlocked.current = await isRecordingBlocked();
+    }
+    if(isBlocked.current) {
+      return alert("Your sound permission is blocked. Please allow that in your browser site settings and restart.");
     }
 
     if (isRecording) {
@@ -37,7 +58,7 @@ export default function RecorderButton(props) {
     start();
   };
 
-  const start = () => {
+  const start = async () => {
     clearTimeout(timeout.current);
     setIsRecording(true);
     setRecordState(RecordState.START);
