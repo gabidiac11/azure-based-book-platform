@@ -102,8 +102,8 @@ export const AddBookPage = () => {
         const resp = await axios.post("books", generatePayload());
         navigate(`/book/${resp.data.bookId}`);
       } catch (err) {
-          const _errors = {};
-          const errorFields = err?.response?.data?.fields;
+        const _errors = {};
+        const errorFields = err?.response?.data?.fields;
         if (errorFields && typeof errorFields === "object") {
           [
             "title",
@@ -125,190 +125,183 @@ export const AddBookPage = () => {
   };
 
   return (
-    <>
-      <Header />
-      <div className="view add-book-view">
-        <Box
-          component="form"
-          sx={{
-            "& .MuiTextField-root": { m: 1, width: "25ch" },
-          }}
-          noValidate
-          autoComplete="off"
+    <div className="view add-book-view">
+      <Box
+        component="form"
+        sx={{
+          "& .MuiTextField-root": { m: 1, width: "25ch" },
+        }}
+        noValidate
+        autoComplete="off"
+      >
+        <Typography
+          variant="h5"
+          gutterBottom
+          component="div"
+          className="heading"
         >
-          <Typography
-            variant="h5"
-            gutterBottom
-            component="div"
-            className="heading"
-          >
-            Add book
-          </Typography>
-          <div className="form-wrapper">
-            <div>
-              <FormControl
-                error={!!errors.title}
-                variant="standard"
-                className="form-control"
-              >
-                <InputLabel htmlFor="component-input-title">Title</InputLabel>
-                <Input
-                  id="component-input-title"
-                  label="title"
-                  name="title"
-                  value={title}
-                  onChange={(e) =>
-                    onChangeTextField(e.target.name, e.target.value)
-                  }
-                  aria-describedby="book-title-error-text"
-                />
-                <FormHelperText id="book-title-error-text">
-                  {errors.title}
-                </FormHelperText>
-              </FormControl>
-              <FormControl
-                error={!!errors.author}
-                variant="standard"
-                className="form-control"
-              >
-                <InputLabel htmlFor="component-input-author">Author</InputLabel>
-                <Input
-                  id="component-input-author"
-                  label="author"
-                  name="author"
-                  value={author}
-                  onChange={(e) =>
-                    onChangeTextField(e.target.name, e.target.value)
-                  }
-                  aria-describedby="book-author-error-text"
-                />
-                <FormHelperText id="book-author-error-text">
-                  {errors.author}
-                </FormHelperText>
-              </FormControl>
-            </div>
-            <div>
-              <FormControl
-                error={!!errors.description}
-                variant="standard"
-                className="form-control"
-              >
-                <InputLabel htmlFor="component-input-description">
-                  Description
-                </InputLabel>
-                <Input
-                  id="component-input-description"
-                  label="Description"
-                  name="description"
-                  value={description}
-                  onChange={(e) =>
-                    onChangeTextField(e.target.name, e.target.value)
-                  }
-                  aria-describedby="book-description-error-text"
-                />
-                <FormHelperText id="book-description-error-text">
-                  {errors.description}
-                </FormHelperText>
-              </FormControl>
-
-              <FormControl
-                error={!!errors.imgFile}
-                variant="standard"
-                className="form-control"
-              >
-                <label
-                  style={{ display: "flex", alignItems: "flex-end" }}
-                  htmlFor="component-input-imgFile-file-input"
-                >
-                  <InputLabel htmlFor="component-input-imgFile">
-                    Photo
-                  </InputLabel>
-                  <Input
-                    label="imgFile"
-                    id="component-input-imgFile"
-                    name="imgFile"
-                    value={imgFile?.[0] ? imgFile[0].name : "No file.."}
-                    onClick={() => uploadInputRef.current?.click()}
-                    aria-describedby="book-imgFile-error-text"
-                  />
-                  <IconButton
-                    color="primary"
-                    aria-label="upload picture"
-                    component="span"
-                  >
-                    <PhotoCamera />
-                  </IconButton>
-                  <input
-                    accept="image/*"
-                    ref={uploadInputRef}
-                    className="input-file"
-                    style={{ display: "none" }}
-                    onChange={(e) =>
-                      onChangeTextField("imgFile", e.target.files)
-                    }
-                    name="imgFile"
-                    id="component-input-imgFile-file-input"
-                    multiple
-                    type="file"
-                  />
-                </label>
-                <FormHelperText id="book-imgFile-error-text">
-                  {errors.imgFile}
-                </FormHelperText>
-              </FormControl>
-            </div>
-            <div>
-              <MobileDatePicker
-                label="Published date"
-                value={publishedDate}
-                onChange={(newValue) => {
-                  onChangeTextField("publishedDate", newValue);
-                }}
-                renderInput={(params) => (
-                  <FormControl
-                    error={!!errors.publishedDate}
-                    variant="standard"
-                    className="form-control"
-                  >
-                    <InputLabel htmlFor="component-input-publishedDate">
-                      Published date
-                    </InputLabel>
-                    <Input
-                      {...params.inputProps}
-                      id="component-input-publishedDate"
-                      label="publishedDate"
-                      name="publishedDate"
-                      readOnly
-                      aria-describedby="book-publishedDate-error-text"
-                    />
-                    <FormHelperText id="book-publishedDate-error-text">
-                      {errors.publishedDate}
-                    </FormHelperText>
-                  </FormControl>
-                )}
+          Add book
+        </Typography>
+        <div className="form-wrapper">
+          <div>
+            <FormControl
+              error={!!errors.title}
+              variant="standard"
+              className="form-control"
+            >
+              <InputLabel htmlFor="component-input-title">Title</InputLabel>
+              <Input
+                id="component-input-title"
+                label="title"
+                name="title"
+                value={title}
+                onChange={(e) =>
+                  onChangeTextField(e.target.name, e.target.value)
+                }
+                aria-describedby="book-title-error-text"
               />
-            </div>
+              <FormHelperText id="book-title-error-text">
+                {errors.title}
+              </FormHelperText>
+            </FormControl>
+            <FormControl
+              error={!!errors.author}
+              variant="standard"
+              className="form-control"
+            >
+              <InputLabel htmlFor="component-input-author">Author</InputLabel>
+              <Input
+                id="component-input-author"
+                label="author"
+                name="author"
+                value={author}
+                onChange={(e) =>
+                  onChangeTextField(e.target.name, e.target.value)
+                }
+                aria-describedby="book-author-error-text"
+              />
+              <FormHelperText id="book-author-error-text">
+                {errors.author}
+              </FormHelperText>
+            </FormControl>
           </div>
           <div>
-            <Button
-              variant="contained"
-              color="primary"
-              className="submit-btn"
-              startIcon={<SendRounded />}
-              disabled={isLoading}
-              onClick={submit}
+            <FormControl
+              error={!!errors.description}
+              variant="standard"
+              className="form-control"
             >
-              {isLoading ? "Loading..." : "Submit"}
-            </Button>
-          </div>
+              <InputLabel htmlFor="component-input-description">
+                Description
+              </InputLabel>
+              <Input
+                id="component-input-description"
+                label="Description"
+                name="description"
+                value={description}
+                onChange={(e) =>
+                  onChangeTextField(e.target.name, e.target.value)
+                }
+                aria-describedby="book-description-error-text"
+              />
+              <FormHelperText id="book-description-error-text">
+                {errors.description}
+              </FormHelperText>
+            </FormControl>
 
-          {generalError && (
-            <Stack sx={{ width: "100%", paddingTop: "20px" }} spacing={2}>
-              <Alert severity="error">{generalError}</Alert>
-            </Stack>
-          )}
-        </Box>
-      </div>
-    </>
+            <FormControl
+              error={!!errors.imgFile}
+              variant="standard"
+              className="form-control"
+            >
+              <label
+                style={{ display: "flex", alignItems: "flex-end" }}
+                htmlFor="component-input-imgFile-file-input"
+              >
+                <InputLabel htmlFor="component-input-imgFile">Photo</InputLabel>
+                <Input
+                  label="imgFile"
+                  id="component-input-imgFile"
+                  name="imgFile"
+                  value={imgFile?.[0] ? imgFile[0].name : "No file.."}
+                  onClick={() => uploadInputRef.current?.click()}
+                  aria-describedby="book-imgFile-error-text"
+                />
+                <IconButton
+                  color="primary"
+                  aria-label="upload picture"
+                  component="span"
+                >
+                  <PhotoCamera />
+                </IconButton>
+                <input
+                  accept="image/*"
+                  ref={uploadInputRef}
+                  className="input-file"
+                  style={{ display: "none" }}
+                  onChange={(e) => onChangeTextField("imgFile", e.target.files)}
+                  name="imgFile"
+                  id="component-input-imgFile-file-input"
+                  multiple
+                  type="file"
+                />
+              </label>
+              <FormHelperText id="book-imgFile-error-text">
+                {errors.imgFile}
+              </FormHelperText>
+            </FormControl>
+          </div>
+          <div>
+            <MobileDatePicker
+              label="Published date"
+              value={publishedDate}
+              onChange={(newValue) => {
+                onChangeTextField("publishedDate", newValue);
+              }}
+              renderInput={(params) => (
+                <FormControl
+                  error={!!errors.publishedDate}
+                  variant="standard"
+                  className="form-control"
+                >
+                  <InputLabel htmlFor="component-input-publishedDate">
+                    Published date
+                  </InputLabel>
+                  <Input
+                    {...params.inputProps}
+                    id="component-input-publishedDate"
+                    label="publishedDate"
+                    name="publishedDate"
+                    readOnly
+                    aria-describedby="book-publishedDate-error-text"
+                  />
+                  <FormHelperText id="book-publishedDate-error-text">
+                    {errors.publishedDate}
+                  </FormHelperText>
+                </FormControl>
+              )}
+            />
+          </div>
+        </div>
+        <div>
+          <Button
+            variant="contained"
+            color="primary"
+            className="submit-btn"
+            startIcon={<SendRounded />}
+            disabled={isLoading}
+            onClick={submit}
+          >
+            {isLoading ? "Loading..." : "Submit"}
+          </Button>
+        </div>
+
+        {generalError && (
+          <Stack sx={{ width: "100%", paddingTop: "20px" }} spacing={2}>
+            <Alert severity="error">{generalError}</Alert>
+          </Stack>
+        )}
+      </Box>
+    </div>
   );
 };

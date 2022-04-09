@@ -1,7 +1,16 @@
+const BookService = require("./../Services/BookService");
+const BookRepository = require("./../Repositories/BookRepository");
+
 class BookController {
     static inject = ["BookRepository", "BookService", "TranslateService"];
     constructor(repository, bookService, translateService) {
+        /**
+         * @type {BookRepository}
+         */
         this.repository = repository;
+        /**
+         * @type {BookService}
+         */
         this.bookService = bookService;
         this.translateService = translateService;
 

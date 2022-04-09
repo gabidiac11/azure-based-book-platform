@@ -7,7 +7,7 @@ import { useParams } from "react-router";
 import { CalendarMonth } from "@mui/icons-material";
 import { Box } from "@mui/system";
 import { useAppContext } from "../../../context/hooks/useAppContext";
-import Moment from "react-moment"
+import Moment from "react-moment";
 
 export const BookPage = () => {
   const [book, setBook] = useState();
@@ -19,6 +19,7 @@ export const BookPage = () => {
   useLayoutEffect(() => {
     const fetchAndUpdateBook = async () => {
       setIsLoading(true);
+      setError("");
       try {
         const bodyFormData = new URLSearchParams();
         bodyFormData.append("language", language);
@@ -33,56 +34,56 @@ export const BookPage = () => {
     };
 
     fetchAndUpdateBook();
-  }, []);
+  }, [id]);
 
   return (
-    <>
-      <Header />
-      <div className="view">
-        {!isLoading && book && (
-          <div className="book-wrapper">
-            <Box sx={{ width: "100%", maxWidth: 500 }}>
-              <Typography variant="h3" gutterBottom component="div">
-                {book.title}
-              </Typography>
-              <Typography variant="h4" gutterBottom component="div">
-                {book.author}
-              </Typography>
-              <Typography
-                variant="h6"
-                gutterBottom
-                component="div"
-                style={{ display: "flex" }}
-              >
-                <span className="icon-wrapper">
-                  <CalendarMonth />{" "}
-                </span>{" "}
-                <span>
-                  <Moment format="MMM Do YYYY" date={new Date(book.publishedDate)} />
-                </span>
-              </Typography>
-              <Typography variant="body1" gutterBottom>
-                {book.description}
-              </Typography>
-            </Box>
-            <div className="img-wrapper">
-              <img alt="img-book" src={book.imgUrl} />
-            </div>
+    <div className="view">
+      {!isLoading && book && (
+        <div className="book-wrapper">
+          <Box sx={{ width: "100%", maxWidth: 500 }}>
+            <Typography variant="h3" gutterBottom component="div">
+              {book.title}
+            </Typography>
+            <Typography variant="h4" gutterBottom component="div">
+              {book.author}
+            </Typography>
+            <Typography
+              variant="h6"
+              gutterBottom
+              component="div"
+              style={{ display: "flex" }}
+            >
+              <span className="icon-wrapper">
+                <CalendarMonth />{" "}
+              </span>{" "}
+              <span>
+                <Moment
+                  format="MMM Do YYYY"
+                  date={new Date(book.publishedDate)}
+                />
+              </span>
+            </Typography>
+            <Typography variant="body1" gutterBottom>
+              {book.description}
+            </Typography>
+          </Box>
+          <div className="img-wrapper">
+            <img alt="img-book" src={book.imgUrl} />
           </div>
-        )}
-        {isLoading && (
-          <Stack sx={{ width: "100%", color: "grey.500" }} spacing={2}>
-            <LinearProgress color="secondary" />
-            <LinearProgress color="success" />
-            <LinearProgress color="inherit" />
-          </Stack>
-        )}
-        {error && (
-          <Stack sx={{ width: "100%", paddingTop: "20px" }} spacing={2}>
-            <Alert severity="error">{error}</Alert>
-          </Stack>
-        )}
-      </div>
-    </>
+        </div>
+      )}
+      {isLoading && (
+        <Stack sx={{ width: "100%", color: "grey.500" }} spacing={2}>
+          <LinearProgress color="secondary" />
+          <LinearProgress color="success" />
+          <LinearProgress color="inherit" />
+        </Stack>
+      )}
+      {error && (
+        <Stack sx={{ width: "100%", paddingTop: "20px" }} spacing={2}>
+          <Alert severity="error">{error}</Alert>
+        </Stack>
+      )}
+    </div>
   );
 };

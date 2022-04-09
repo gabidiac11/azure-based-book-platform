@@ -10,9 +10,13 @@ class TextToSpeechService {
   };
 
   static inject = ["Configuration", "StorageService"];
+
+  #key
+  #region
+
   constructor(config, storageService) {
-    this.key = config.get("AZURE_SPEECH_CONFIG").key;
-    this.region = config.get("AZURE_SPEECH_CONFIG").region;
+    this.#key = config.get("AZURE_SPEECH_CONFIG").key;
+    this.#region = config.get("AZURE_SPEECH_CONFIG").region;
 
     this.storageService = storageService;
 
@@ -46,8 +50,8 @@ class TextToSpeechService {
     const fileName = `${userid}.mp3`;
 
     const speechConfig = sdk.SpeechConfig.fromSubscription(
-      this.key,
-      this.region
+      this.#key,
+      this.#region
     );
     speechConfig.speechSynthesisVoiceName = this.getVoice(languageCode);
     const synthesizer = new sdk.SpeechSynthesizer(speechConfig);

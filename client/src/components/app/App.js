@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Box from "@mui/material/Box";
 import LinearProgress from "@mui/material/LinearProgress";
+import Header from "../common/Header/Header";
 
 export const App = () => {
   const [user, isLoading] = useAuthState(auth);
@@ -27,6 +28,7 @@ export const App = () => {
   return (
     <div className="main">
       <BrowserRouter>
+        {user && <Header/>}
         {!user ? (
           <Routes>
             <Route path="/login" element={<Login />} />

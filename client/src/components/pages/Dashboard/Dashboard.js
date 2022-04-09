@@ -88,7 +88,7 @@ export const Dashboard = () => {
       formData.append("text", params.row.description);
       formData.append("language", language.current);
 
-      const resp = await axios.post("play", formData);
+      const resp = await axios.post("audio/play", formData);
       let urlEntity = new URL(`${resp.data.fileName}`);
       //avoid caching by passing a fresh parameter
       urlEntity.searchParams.append("cacheVersion", Date.now());
@@ -174,48 +174,45 @@ export const Dashboard = () => {
   }, []);
 
   return (
-    <>
-      <Header />
-      <div className="view dashboard" style={{ height: "calc(100vh - 70px)" }}>
-        <div className="dashboard-link">
-          Want to add a new book? <Link to="/book/add">Click here</Link> now.
-        </div>
-
-        <div>
-          <FormControl style={{ padding: "10px 0" }}>
-            <InputLabel id="language-simple-select-label">Language</InputLabel>
-            <Select
-              labelId="language-simple-select-label"
-              value={language.current}
-              label="Language"
-              onChange={handleDropdownChange}
-            >
-              <MenuItem value={"ro"}>Romana</MenuItem>
-              <MenuItem value={"en"}>English</MenuItem>
-              <MenuItem value={"de"}>Deutch</MenuItem>
-              <MenuItem value={"zh"}>Chineza</MenuItem>
-              <MenuItem value={"ru"}>Русский</MenuItem>
-            </Select>
-          </FormControl>
-        </div>
-
-        <DataGrid
-          rows={rows}
-          className="data-table"
-          loading={isLoading}
-          getRowId={(row) => row.bookId}
-          columns={columns}
-          pageSize={10}
-          rowsPerPageOptions={[5]}
-          checkboxSelection
-          onRowClick={onRowClick}
-        />
-        {error && (
-          <Stack sx={{ width: "100%", paddingTop: "20px" }} spacing={2}>
-            <Alert severity="error">{error}</Alert>
-          </Stack>
-        )}
+    <div className="view dashboard" style={{ height: "calc(100vh - 70px)" }}>
+      <div className="dashboard-link">
+        Want to add a new book? <Link to="/book/add">Click here</Link> now.
       </div>
-    </>
+
+      <div>
+        <FormControl style={{ padding: "10px 0" }}>
+          <InputLabel id="language-simple-select-label">Language</InputLabel>
+          <Select
+            labelId="language-simple-select-label"
+            value={language.current}
+            label="Language"
+            onChange={handleDropdownChange}
+          >
+            <MenuItem value={"ro"}>Romana</MenuItem>
+            <MenuItem value={"en"}>English</MenuItem>
+            <MenuItem value={"de"}>Deutch</MenuItem>
+            <MenuItem value={"zh"}>Chineza</MenuItem>
+            <MenuItem value={"ru"}>Русский</MenuItem>
+          </Select>
+        </FormControl>
+      </div>
+
+      <DataGrid
+        rows={rows}
+        className="data-table"
+        loading={isLoading}
+        getRowId={(row) => row.bookId}
+        columns={columns}
+        pageSize={10}
+        rowsPerPageOptions={[5]}
+        checkboxSelection
+        onRowClick={onRowClick}
+      />
+      {error && (
+        <Stack sx={{ width: "100%", paddingTop: "20px" }} spacing={2}>
+          <Alert severity="error">{error}</Alert>
+        </Stack>
+      )}
+    </div>
   );
 };

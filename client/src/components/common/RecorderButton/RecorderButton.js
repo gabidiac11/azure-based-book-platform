@@ -1,83 +1,69 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import { Mic, MicOff } from "@mui/icons-material";
-import MicRecorder from "mic-recorder-to-mp3";
-import "./RecorderButton.css";
 import { CircularProgress } from "@mui/material";
+import AudioReactRecorder, { RecordState } from "./recorder-js/dist";
+import "./RecorderButton.css";
 
-const mp3Recorder = new MicRecorder({ bitRate: 128 });
+const initAudioAndGetSupport = () => {
+  try {
+    window.AudioContext = window.AudioContext || window.webkitAudioContext;
+    navigator.getUserMedia =
+      navigator.getUserMedia || navigator.webkitGetUserMedia;
+    window.URL = window.URL || window.webkitURL;
 
-const isRecordingBlocked = () =>
-  new Promise((resolve) => {
-    navigator.getUserMedia(
-      { audio: true },
-      () => {
-        resolve(false);
-      },
-      () => {
-        resolve(true);
-      }
-    );
-  });
+    return true;
+  } catch (e) {
+    return false;
+  }
+};
 
-export default function Recorder(props) {
+export default function RecorderButton(props) {
   const [isRecording, setIsRecording] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const timeout = useRef(0);
   const [blobURL, setBlobURL] = useState("");
+  const [recordState, setRecordState] = useState();
+  const hasSupport = useRef(initAudioAndGetSupport());
 
   const onClickMic = async () => {
-    if (await isRecordingBlocked()) {
-      window.alert(
-        "Audio is blocked in browser site settings. You must enable recording for this to work."
-      );
-      setIsRecording(false);
-      return;
+    if (!hasSupport.current) {
+      return alert("No web audio support in this browser!");
     }
 
     if (isRecording) {
-      stop();
-    } else {
-      start();
+      return stop();
     }
+    start();
   };
 
   const start = () => {
     clearTimeout(timeout.current);
-    mp3Recorder
-      .start()
-      .then(() => {
-        setIsRecording(true);
-        timeout.current = setTimeout(() => {
-          stop();
-        }, 12_000);
-      })
-      .catch((e) => alert(e));
+    setIsRecording(true);
+    setRecordState(RecordState.START);
+    timeout.current = setTimeout(stop, 12_000);
   };
 
   const stop = () => {
     clearTimeout(timeout.current);
-    mp3Recorder
-      .stop()
-      .getMp3()
-      .then(([buffer, blob]) => {
-        setBlobURL(URL.createObjectURL(blob));
-        setIsRecording(false);
-        submitAudio([buffer, blob]);
-      })
-      .catch((e) => console.log(e));
+    setRecordState(RecordState.STOP);
+    setIsRecording(false);
   };
 
-  const submitAudio = async (results) => {
+  const submitAudio = async (data) => {
     setIsLoading(true);
+    setBlobURL(data.url);
     try {
-      await props.sendAudio(results);
-    } catch (err) {}
-    setIsLoading(false);
+      await props.sendAudio(data.blob);
+    } catch (err) {
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <div className="recorder-section">
+      <AudioReactRecorder.default state={recordState} onStop={submitAudio} />
       <IconButton
         size="large"
         edge="start"
@@ -93,10 +79,7 @@ export default function Recorder(props) {
         {(() => {
           if (isLoading) {
             return (
-              <CircularProgress
-                color="secondary"
-                className="loading-btn"
-              />
+              <CircularProgress color="secondary" className="loading-btn" />
             );
           }
           return isRecording ? <Mic htmlColor="red" /> : <MicOff />;

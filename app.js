@@ -34,7 +34,8 @@ app.get("/api/books/:id", bookController.getBook);
 app.get("/api/books", bookController.getAllBooks);
 app.post("/api/books", upload.single("imgFile"), bookController.createBook);
 
-app.post("/api/play", audioController.create);
+app.post("/api/audio/play", audioController.create);
+app.post("/api/audio/text", upload.single("audioFile"), audioController.audioToText);
 
 app.get("/*", function (req, res) {
   const pathName = path.join(__dirname, "client/build", "index.html");

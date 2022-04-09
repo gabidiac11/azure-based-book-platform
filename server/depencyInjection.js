@@ -13,6 +13,7 @@ injector.factory("AudioController", require("./Controllers/AudioController"));
 injector.factory("BookService", require("./Services/BookService"));
 injector.factory("StorageService", require("./Services/StorageService"));
 injector.factory("TextToSpeechService", require("./Services/TextToSpeechService"));
+injector.factory("SpeechToTextService", require("./Services/SpeechToTextService"));
 injector.factory("TranslateService", require("./Services/TranslateService"));
 
 module.exports = injector;

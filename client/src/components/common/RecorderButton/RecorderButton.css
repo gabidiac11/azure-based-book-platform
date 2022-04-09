@@ -21,3 +21,7 @@
    width: 25px!important;
    height: 25px!important;
 }
+
+.audio-react-recorder {
+    display: none;
+}
