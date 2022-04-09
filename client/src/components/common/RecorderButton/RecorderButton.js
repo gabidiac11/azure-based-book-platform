@@ -5,6 +5,7 @@ import { CircularProgress, Tooltip } from "@mui/material";
 import AudioReactRecorder, { RecordState } from "./recorder-js/dist";
 import "./RecorderButton.css";
 
+//test comment
 const initAudioAndGetSupport = () => {
   try {
     window.AudioContext = window.AudioContext || window.webkitAudioContext;
