@@ -1,6 +1,6 @@
 {
   "AZURE_DB_CONFIG": {
-    "host": "cc-2022-simple-db-server-name.mysql.database.azure.com",
+    "host": "cc-2022-simple-db-server-name-3.mysql.database.azure.com",
     "user": "cesamai",
     "password": "Cloud2022!",
     "database": "cc_2022_database",
@@ -8,16 +8,16 @@
     "ssl": { "ca": "DigiCertGlobalRootCA.crt.pem" }
   },
   "AZURE_STORAGE": {
-    "AZURE_STORAGE_CONN_STRING": "DefaultEndpointsProtocol=https;AccountName=cc2022storage1account;AccountKey=iULU4+7lzV1TkWBZBxQgCHRYZ2kYx3bM4Qdibk5B7URZeFEYZOunCpXwx1t4zTWKIB3NwUD/lw9vRFgnHhK0Kg==;EndpointSuffix=core.windows.net",
+    "AZURE_STORAGE_CONN_STRING": "DefaultEndpointsProtocol=https;AccountName=cc20222storage1account;AccountKey=74CRbLqqHNZKPdH7kx8tpe1DVT9siegeigF2+yBCESxtJhWBDGMXaoFhtbpNRi1I9fO/Kh+ih1DmLesJ99wQ9w==;EndpointSuffix=core.windows.net",
     "AZURE_BLOB_CONTAINER": "images-container",
-    "AZURE_ACCOUNT": "cc2022storage1account"
+    "AZURE_ACCOUNT": "cc20222storage1account"
   },
   "AZURE_SPEECH_CONFIG": {
-    "key": "a8fe3007000945f2b2b3990705a4e4b6",
+    "key": "450dde5109894ba2b9eddb0f03a424d1",
     "region": "westeurope"
   },
   "AZURE_TRANSLATE_CONFIG": {
-    "key": "eedd1065a8f644d3b5fe99b2f1c9f7c0",
+    "key": "80aed93aed9f4fe3add8948fe9ad7339",
     "region": "westeurope",
     "endpointText": "https://api.cognitive.microsofttranslator.com"
   }

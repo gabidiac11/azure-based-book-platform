@@ -109,7 +109,7 @@ export default function Header() {
     if(/open book [\d]+/.test(textLc)) {
       const id = Number(textLc.match(/open book ([\d]+)/)[1]);
       setSnack({
-        message: `Command: open item (recognised text: '${text}')`,
+        message: `Command: open book (recognised text: '${text}')`,
         open: true,
         severity: "success",
       });
