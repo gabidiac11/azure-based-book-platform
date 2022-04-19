@@ -11,7 +11,7 @@ class StorageService {
 
     //set blob client
     /** @type {ContainerClient} */
-    this.storage = BlobServiceClient.fromConnectionString(
+    this.container = BlobServiceClient.fromConnectionString(
       storageConfig.AZURE_STORAGE_CONN_STRING
     ).getContainerClient(this.containerName);
 
@@ -25,7 +25,7 @@ class StorageService {
   }
 
   async uploadFile(file, fileName) {
-    await this.storage.getBlockBlobClient(fileName).uploadData(file.buffer);
+    await this.container.getBlockBlobClient(fileName).uploadData(file.buffer);
     return `https://${this.accountName}.blob.core.windows.net/${this.containerName}/${fileName}`;
   }
 }

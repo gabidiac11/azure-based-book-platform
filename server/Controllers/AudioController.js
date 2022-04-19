@@ -1,9 +1,13 @@
 const SpeechToTextService = require("../Services/SpeechToTextService");
+const TextToSpeechService = require("../Services/TextToSpeechService");
 
 class AudioController {
   static inject = ["TextToSpeechService", "SpeechToTextService"];
 
   constructor(textToSpeechService, speechToTextService) {
+    /**
+     * @type {TextToSpeechService}
+     */
     this.textToSpeechService = textToSpeechService;
     /**
      * @type {SpeechToTextService}

@@ -1,4 +1,5 @@
 const sdk = require("microsoft-cognitiveservices-speech-sdk");
+const StorageService = require("../Services/StorageService");
 
 class TextToSpeechService {
   languageDict = {
@@ -18,6 +19,9 @@ class TextToSpeechService {
     this.#key = config.get("AZURE_SPEECH_CONFIG").key;
     this.#region = config.get("AZURE_SPEECH_CONFIG").region;
 
+    /**
+     * @type {StorageService}
+     */
     this.storageService = storageService;
 
     this.toBuffer = this.toBuffer.bind(this);
