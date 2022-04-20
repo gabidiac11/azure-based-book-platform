@@ -18,3 +18,5 @@ steps:
 - script: |
     npm run prepare-deploy
   displayName: 'npm install and build'
+
+- task: PublishBuildArtifacts@1
