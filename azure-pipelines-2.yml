@@ -19,4 +19,11 @@ steps:
     npm run prepare-deploy
   displayName: 'npm install and build'
 
-- task: PublishBuildArtifacts@1
+- task: CopyFiles@2
+      inputs:
+        targetFolder: '$(Build.ArtifactStagingDirectory)' 
+ 
+- task: PublishBuildArtifacts@1    
+displayName: 'Publish Artifact: drop'
+inputs:
+  PathtoPublish: '$(build.artifactstagingdirectory)'
