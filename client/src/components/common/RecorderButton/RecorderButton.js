@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import { Mic, MicOff } from "@mui/icons-material";
 import { CircularProgress, Tooltip } from "@mui/material";
-import AudioReactRecorder, { RecordState } from "./recorder-js/dist/index";
+import AudioReactRecorder, { RecordState } from "./recorder-js/index";
 import "./RecorderButton.css";
 
 const initAudioAndGetSupport = () => {
