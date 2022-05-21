@@ -1,5 +1,6 @@
 const BookService = require("./../Services/BookService");
 const BookRepository = require("./../Repositories/BookRepository");
+const TranslateService = require("../Services/TranslateService");
 
 class BookController {
     static inject = ["BookRepository", "BookService", "TranslateService"];
@@ -12,6 +13,9 @@ class BookController {
          * @type {BookService}
          */
         this.bookService = bookService;
+        /**
+         * @type {TranslateService}
+         */
         this.translateService = translateService;
 
         this.getBook = this.getBook.bind(this);
